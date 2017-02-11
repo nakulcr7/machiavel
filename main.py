@@ -10,7 +10,7 @@ def preprocess(music_lib):
     print "Preprocessing {} songs".format(len(files))
     exit(0)
     # for file in files:
-        # analysis.analyze(file)
+    # analysis.analyze(file)
 
 
 def mix(music_lib):
@@ -30,10 +30,23 @@ def mix(music_lib):
     print "Seed BPM: {}".format(seed_bpm)
     print "Seed Key: {}".format(seed_key)
 
-    # Search for songs that need comparatively small modifications to match seed song
+    # Search for songs that need comparatively small modifications to match
+    # seed song
+    bpm_lo = 0.8 * seed_bpm
+    bpm_hi = 1.20 * seed_bpm
+    key_range = 6
 
     # Pick those songs
-    
+    selection = []
+    while tracks and len(selections) < n:
+        track = tracks.pop()
+        bpm, key = analysis.analyze(track)
+        print "Currently analyzing {}".format(track)
+        if bpm_lo <= bpm <= bpm_hi and (seed_key.mixable(key) or abs(seed_key.distance(key)) <= key_range):
+            print "Selected"
+            selection.append((track, bpm, key))
+        else:
+            print "Skipped"
 
 
 if __name__ == '__main__':
