@@ -1,45 +1,42 @@
-import logging
-
-
-class Note():
-    g_notes_major = ['C', 'C#', 'D', 'D#', 'E',
+class Key():
+    g_keys_major = ['C', 'C#', 'D', 'D#', 'E',
                      'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-    g_notes_minor = ['A', 'A#', 'B', 'C', 'C#',
+    g_keys_minor = ['A', 'A#', 'B', 'C', 'C#',
                      'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
     g_mixables = ['C', 'F', 'A#', 'D#', 'G#',
                   'C#', 'F#', 'B', 'E', 'A', 'D', 'G']
     g_note_count = 12
 
-    def __init__(self, note, scale):
+    def __init__(self, key, scale):
         if scale == 'major':
-            self.id = self.g_notes_major.index(note)
+            self.id = self.g_keys_major.index(key)
         elif scale == 'minor':
-            self.id = self.g_notes_minor.index(note)
+            self.id = self.g_keys_minor.index(key)
         else:
             print "Note class initialized with the wrong scale"
             exit(1)
-        self.note = note
+        self.key = key
         self.scale = scale
 
-    def is_mixable(self, other_note):
+    def is_mixable(self, other_key):
         """
-        Return True iff this note is mixable with the other note
+        Return True iff this key is mixable with the other key
         How? http://www.mixedinkey.com/HowTo
         """
-        if self.id == other_note.id:
+        if self.id == other_key.id:
             return True
-        if self.scale == other_note.scale:
-            a = self.g_mixables.index(self.note)
-            b = self.g_mixables.index(other_note.note)
+        if self.scale == other_key.scale:
+            a = self.g_mixables.index(self.key)
+            b = self.g_mixables.index(other_key.key)
             d = abs(self._shortest_distance(a, b))
             return d == 1
         return False
 
-    def distance(self, other_note):
+    def distance(self, other_key):
         """
-        Returns shortest tonal distance between this note and the other notes
+        Returns shortest tonal distance between this key and the other keys
         """
-        return self._shortest_distance(self.id, other_note.id)
+        return self._shortest_distance(self.id, other_key.id)
 
     def _shortest_distance(self, this_id, that_id):
         d = that_id - this_id
