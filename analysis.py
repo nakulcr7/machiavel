@@ -1,8 +1,24 @@
 from models.key import Key
 from essentia import Pool, streaming, run
+from database import save, load
+
+
+def analyze(file_in):
+    """
+    Returns (bpm, Key) after analyzing the given audio file
+    """
+    data = load(file_in)
+    if data is not None:
+        bpm, key, scale = data
+        return bpm, Key(key, scale)
+    bpm = get_bpm(file_in)
+    key = get_key(file_in)
+    save(file_in, bpm, key)
+    return bpm, key
 
 
 def get_bpm(file_in):
+    pass
 
 
 def get_key(file_in):
