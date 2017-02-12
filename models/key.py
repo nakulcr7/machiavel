@@ -1,8 +1,8 @@
 class Key():
     g_keys_major = ['C', 'C#', 'D', 'D#', 'E',
-                     'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+                    'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     g_keys_minor = ['A', 'A#', 'B', 'C', 'C#',
-                     'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
+                    'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
     g_mixables = ['C', 'F', 'A#', 'D#', 'G#',
                   'C#', 'F#', 'B', 'E', 'A', 'D', 'G']
     g_note_count = 12

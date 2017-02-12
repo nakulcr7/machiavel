@@ -18,7 +18,32 @@ def analyze(file_in):
 
 
 def get_bpm(file_in):
-    pass
+    pool = Pool()
+
+    loader = streaming.MonoLoader(filename=file_in)
+    bt = streaming.RhythmExtractor2013()
+    bpm_histogram = streaming.BpmHistogramDescriptors()
+    # BPM histogram output size is 250
+    centroid = streaming.Centroid(range=250)
+
+    loader.audio >> bt.signal
+    bt.bpm >> (pool, 'bpm')
+    bt.ticks >> None
+    bt.confidence >> (pool, 'confidence')
+    bt.estimates >> None
+    bt.bpmIntervals >> bpm_histogram.bpmIntervals
+    bpm_histogram.firstPeakBPM >> (pool, 'bpm_first_peak')
+    bpm_histogram.firstPeakWeight >> None
+    bpm_histogram.firstPeakSpread >> None
+    bpm_histogram.secondPeakBPM >> (pool, 'bpm_second_peak')
+    bpm_histogram.secondPeakWeight >> None
+    bpm_histogram.secondPeakSpread >> None
+    bpm_histogram.histogram >> (pool, 'bpm_histogram')
+    bpm_histogram.histogram >> centroid.array
+    centroid.centroid >> (pool, 'bpm_centroid')
+
+    run(loader)
+    return pool['bpm']
 
 
 def get_key(file_in):
