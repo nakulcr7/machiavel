@@ -1,5 +1,5 @@
-from models.key import Key
-from essentia import Pool, streaming, run
+from key import Key
+from essentia import Pool, streaming, run, standard
 from database import save, load
 
 
@@ -76,3 +76,19 @@ def get_key(file_in):
     run(loader)
 
     return Key(pool['tonal.key_key'], pool['tonal.key_scale'])
+
+
+def estimate_beats(infile):
+    """
+    Return the estimated beat onsets in seconds for an audio file.
+    """
+    audio = standard.MonoLoader(filename=infile)()
+    bt = standard.BeatTrackerMultiFeature()
+    beats, confidence = bt(audio)
+    return beats
+
+
+def duration(file_in):
+    d = standard.Duration()
+    audio = standard.MonoLoader(filename=file_in)()
+    return d(audio)

@@ -1,16 +1,14 @@
 
-input/Torrent Downloaded from WorldWideTorrents.eu.txt
-
-input/_ReadMe.txt
+# Tracks
+*.flac
 
 *.mp3
 
 *.mp4
 
-input/Cover.jpg
-
-input/Torrent Downloaded From ExtraTorrent.cc.txt
-
-input/WWRG Read Me!.txt
-
+# Python
 *.pyc
+
+# Input and output
+output/
+input/

@@ -1,0 +1,7 @@
+click==4.0
+pydub==0.11.0
+wsgiref==0.1.2
+requests==2.6.0
+lxml==3.3.5
+eyeD3==0.7.9
+stagger==1.0.0
