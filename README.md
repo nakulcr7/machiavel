@@ -2,11 +2,13 @@
 
 (WIP)
 
-Machiavel generates music collages/sample mixes (plunderphonic song sketches) by analyzing a directory of audio files (mp3, wav, aif) and randomly select a song to build a mix around. It will then pick out other appropriate songs from that directory - tempo-stretching and pitch-shifting them as needed - to slice into samples, which it then assembles into a multi-track mix.
+Machiavel generates music collages/sample mixes (plunderphonic song sketches) by analyzing a directory of audio files (flac) and randomly select a song to build a mix around using Markov Chains. It will then pick out other appropriate songs from that directory - tempo-stretching and pitch-shifting them as needed - to slice into samples, which it then assembles into a multi-track mix.
 
 The quality of the output depends a lot on your own taste in curating the library Machiavel samples from. If you have a directory of songs that seem like they'll fit together, Machiavel will do pretty well. If you have a bunch of random tracks, you might get something nice too.
 
-These mix sketches are meant for high-scale automated ideation and not a substitute for human editing ;)
+These mix sketches are meant for high-scale automated ideation and not a substitute for human editing!
+
+Example [track](https://soundcloud.com/nakul-cr/machiavel-random-access-memories-mix). Generated using five tracks from Daft Punk's Random Access Memories.
 
 ## Setup
 
